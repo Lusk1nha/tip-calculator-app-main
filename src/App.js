@@ -1,23 +1,11 @@
-import logo from './logo.svg';
-import './App.css';
+// 142.55 / 5 = 28,51
+// 4,27 = 15% (28,51)
+// 32,79 = 28,51 + 4,27
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Hello World</h1>
     </div>
   );
 }
