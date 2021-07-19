@@ -15,8 +15,8 @@ In this project I used HTML, SCSS(SASS), JS.
 
 Desktop -
 
-[![vercel.com](./public/assets/images/github-image-desktop.png)](https://tip-calculator-app-main-lusk1nha.vercel.app/)
+[![vercel.com](./src/assets/images/github-image-desktop.png)](https://tip-calculator-app-main-lusk1nha.vercel.app/)
 
 Mobile -
 
-[![vercel.com](./public/assets/images/github-image-mobile.png)](https://tip-calculator-app-main-lusk1nha.vercel.app/)
+[![vercel.com](./src/assets/images/github-image-mobile.png)](https://tip-calculator-app-main-lusk1nha.vercel.app/)
