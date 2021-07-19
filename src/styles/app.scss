@@ -1,0 +1,285 @@
+@import '../styles/mixins';
+@import '../styles/vars';
+
+#root {
+  min-height: 100vh;
+}
+
+body {
+  background-color: $light-grayish-cyan-1;
+  min-height: 100vh;
+
+  padding-bottom: 5rem;
+}
+
+#home {
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  padding: 3rem 0 0rem;
+
+  .title {
+    color: $dark-grayish-cyan-1;
+    font-size: clamp(1.6rem, 5vw, 1.8rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.7rem;
+
+    margin-bottom: 2rem;
+  }
+}
+
+.calculator {
+  background-color: $white;
+
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  
+  padding: 2rem;
+
+  border-radius: 1.2rem 1.2rem 0 0;
+
+  @include tablet {
+    max-width: 500px;
+  };
+
+  @include desktop {
+    max-width: 800px;
+    max-height:  500px;
+
+    flex-direction: row;
+
+    border-radius: 1.2rem;
+  }
+}
+
+form {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  flex: 2;
+
+  @include desktop {
+    flex: 1;
+
+    justify-content: space-between;
+
+    margin-right: 2rem;
+  };
+
+  label {
+    width: 100%;
+
+    color: $dark-grayish-cyan-1; 
+
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 3rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-self: center;
+    
+    margin-bottom: 1.3rem;
+
+    @include desktop {
+      margin-bottom: 0;
+    };
+  }
+
+  .input-container {
+    background-color: $light-grayish-cyan-2;
+
+    width: 100%;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 1rem;
+
+    border-radius: 0.2rem;
+    
+    &:focus-within {
+      outline: 2px dashed $light-grayish-cyan-1;
+    }
+
+    img {
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      max-width: 12px;
+      width: 100%;
+
+      margin-right: 0.5rem;
+    }
+
+    input {
+      @include inputDefault; 
+    }
+
+    .input--bill,
+    .input--people {
+      color: $very-dark-cyan;
+      font-size: clamp(1.2rem, 4.4vw, 1.3rem);
+      letter-spacing: 0.04rem;
+    }
+  }
+
+  .select-container {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    gap: 1rem;
+
+    @include desktop {
+      grid-template-columns: 1fr 1fr 1fr;
+    };
+
+    .select-button {
+      background-color: $very-dark-cyan;
+
+      width: 100%;
+      height: 40px;
+
+      color: $white;
+      font-size: clamp(1.2rem, 5vw, 1.4rem);
+      font-weight: 700;
+
+      border: 0;
+      border-radius: 0.3rem;
+
+      cursor: pointer;
+
+      transition: all 0.2s;
+
+      &:focus {
+        background-color: $strong-cyan;
+        color: $very-dark-cyan;
+      }
+    }
+
+    .select-custom {
+      @include inputDefault; 
+      
+      width: 100%;
+      
+      background-color: $light-grayish-cyan-2;
+
+      color: $very-dark-cyan;
+      font-size: 1.2rem;
+      text-align: center;
+
+      border: 0;
+
+      &:focus {
+        outline: 2px dashed $light-grayish-cyan-1;
+      }
+    }
+  }
+}
+
+.screen {
+  background-color: $very-dark-cyan;
+
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  flex: 1;
+
+  border-radius: 0.5rem;
+
+  padding: 1.5rem;
+
+  .result {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .amount-result,
+  .total-result {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 1rem;
+
+    span {
+      width: 100%;
+
+      h3 {
+        color: $white;
+        font-weight: 700;
+        font-size: 0.9rem;
+        letter-spacing: 0.04rem; 
+      }
+
+      h4 {
+        color: $dark-grayish-cyan-1;
+        font-weight: 700;
+        font-size: 0.75rem;
+        letter-spacing: 0.04rem; 
+      }
+    }
+
+    h1 {
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+
+      color: $strong-cyan;
+      font-size: 1.7rem;
+
+      margin: 0;
+    }
+  }
+
+  .reset-button {
+    background-color: $strong-cyan;
+
+    width: 100%;
+    height: 40px;
+
+    color: $very-dark-cyan;
+    font-size: clamp(1rem, 5vw, 1.3rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06rem;
+
+    border: 0;
+    outline: 0;
+
+    border-radius: 0.3rem;
+
+    cursor: pointer;
+  }
+}

@@ -12,3 +12,21 @@ $tablet-screen-width: 500px;
     @content
   }
 };
+
+@mixin inputDefault {
+  background-color: transparent;
+
+  width: 100%;
+
+  font-weight: 700;
+  text-align: end;
+
+  border: 0;
+  outline: none;
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
