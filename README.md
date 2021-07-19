@@ -2,12 +2,10 @@
 
 A Tip Calculator from Frontend Mentor
 
-
-
 # Technologies
 In this project I used HTML, SCSS(SASS), JS.
 
-[This is a challenge of FrontEnd Mentor](https://www.frontendmentor.io/challenges/sunnyside-agency-landing-page-7yVs3B6ef).
+[This is a challenge of FrontEnd Mentor](https://www.frontendmentor.io/challenges/tip-calculator-app-ugJNGbJUX).
 
 ## Result
 
