@@ -1,9 +1,56 @@
+import { useEffect, useState } from 'react'
 import dollarImg from '../assets/images/icon-dollar.svg'
 import personImg from '../assets/images/icon-person.svg'
 
+import { SelectButton } from '../components/SelectButton'
+
 export function Calculator() {
+  const [amount, setAmount] = useState(0)
+  const [total, setTotal] = useState(0)
+
+  const [ bill, setBill ] = useState('')
+  const [ percent, setPercent ] = useState('')
+  const [ people, setPeople ] = useState('')
+
+  const [ peopleValidation, setPeopleValidation ] = useState(true)
+  const [ btnDisabled, setBtnDisabled ] = useState(true)
+
+  useEffect(() => {
+    if ( bill !== '' && percent !== '' && people !== '' ) {
+      const divideByPersons = bill / people
+      const percentCount = (percent / 100) * divideByPersons
+      const totalWithPercent = (divideByPersons + percentCount).toFixed(2)
+
+      setAmount(percentCount)
+      setTotal(totalWithPercent)
+
+      setBtnDisabled(false)
+
+    } else {
+      setAmount(0)
+      setTotal(0)
+
+      setBtnDisabled(true)
+    }
+  }, [bill, percent, people])
+
   const handleSubmit = (event) => {
     event.preventDefault()
+  }
+
+  const handleInput = (event) => {
+    setPercent(event.target.value)
+  }
+
+  const validateInput = (number) => {
+    if ( number < 1 ) setPeopleValidation(false)
+    else setPeopleValidation(true)
+  }
+
+  const reset = () => {
+    setBill('')
+    setPercent('')
+    setPeople('')
   }
 
   return (
@@ -11,7 +58,7 @@ export function Calculator() {
       <form onSubmit={handleSubmit}>
         <label className="bill">
           
-          Bill
+          <h4>Bill</h4>
           
           <section className="input-container">
             <img src={dollarImg} alt="Dollar Icon" />
@@ -21,38 +68,46 @@ export function Calculator() {
               type="number"
               name="bill"
               placeholder="0"
-
+              onChange={event => setBill(event.target.value)}
+              value={bill}
             />
           </section>
         </label>
 
         <label className="percent">
           
-          Select Tip %
+          <h4>Select Tip %</h4>
           
           <section className="select-container">
-            <button className="select-button" type="button" value="5">5%</button>
-            <button className="select-button" type="button" value="10">10%</button>
-            <button className="select-button" type="button" value="15">15%</button>
-            <button className="select-button" type="button" value="25">25%</button>
-            <button className="select-button" type="button" value="50">50%</button>
-            <input className="select-custom" type="number" placeholder="Custom" />
+            <SelectButton setPercent={setPercent} value={5} />
+            <SelectButton setPercent={setPercent} value={10} />
+            <SelectButton setPercent={setPercent} value={15} />
+            <SelectButton setPercent={setPercent} value={25} />
+            <SelectButton setPercent={setPercent} value={50} />
+            <input className="select-custom" type="number" placeholder="Custom" onChange={handleInput} />
           </section>
         </label>
       
-        <label className="people">
+        <label className={peopleValidation === true ? 'percent' : 'percent invalid'}>
           
-          Number of People
+          <h4>
+            Number of People
+            <span className="error">Can't be zero</span>
+          </h4>
           
           <section className="input-container">
             <img src={personImg} alt="Person Icon" />
 
             <input 
-              className="input--people" 
+              className="input--people invalid" 
               type="number"
               name="people"
               placeholder="0"
-
+              onChange={event => {
+                setPeople(event.target.value)
+                validateInput(event.target.value)
+              }}
+              value={people}
             />
           </section>
         </label>
@@ -66,7 +121,7 @@ export function Calculator() {
               <h4>/ person</h4>
             </span>
 
-            <h1 className="amount-result">${0}.00</h1>
+            <h1 className="amount-result">${Number(amount).toFixed(2)}</h1>
           </div>
 
           <div className="total-result">
@@ -75,12 +130,12 @@ export function Calculator() {
               <h4>/ person</h4>
             </span>
 
-            <h1 className="total-result">${0}.00</h1>
+            <h1 className="total-result">${Number(total).toFixed(2)}</h1>
           </div>
 
         </div>
       
-        <button className="reset-button" type="reset" disabled={true}>Reset</button>
+        <button className="reset-button" type="reset" disabled={btnDisabled} onClick={reset}>Reset</button>
       </div>
     </div>
   );
