@@ -311,6 +311,8 @@ form {
 
     cursor: pointer;
 
+    opacity: 100%;
+
     &:disabled {
       opacity: 50%;
       cursor: not-allowed;
